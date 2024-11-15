@@ -1,6 +1,7 @@
 package com.ag_apps.restaurants.android
 
 import android.app.Application
+import com.ag_apps.restaurants.android.di.restaurantModule
 import com.ag_apps.restaurants.di.androidModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
@@ -15,7 +16,8 @@ class App : Application() {
         startKoin {
             androidContext(this@App)
             modules(
-                androidModule
+                androidModule,
+                restaurantModule
             )
         }
     }
