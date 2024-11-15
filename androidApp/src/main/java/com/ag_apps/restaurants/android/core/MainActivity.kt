@@ -1,4 +1,4 @@
-package com.ag_apps.restaurants.android
+package com.ag_apps.restaurants.android.core
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity

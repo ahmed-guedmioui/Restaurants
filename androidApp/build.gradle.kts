@@ -43,4 +43,10 @@ dependencies {
     implementation(libs.compose.material3)
     implementation(libs.androidx.activity.compose)
     debugImplementation(libs.compose.ui.tooling)
+
+    // Coil
+    implementation(libs.coil.compose)
+
+    // Koin
+    implementation(libs.bundles.koin)
 }

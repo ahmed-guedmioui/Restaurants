@@ -1,4 +1,4 @@
-package com.ag_apps.restaurants.android
+package com.ag_apps.restaurants.android.core
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.shape.RoundedCornerShape
