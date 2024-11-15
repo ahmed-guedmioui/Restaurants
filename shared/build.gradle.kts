@@ -28,6 +28,10 @@ kotlin {
     }
 
     sourceSets {
+        androidMain.dependencies {
+            implementation(libs.play.services.location)
+            implementation(libs.bundles.koin)
+        }
         commonMain.dependencies {
             //put your multiplatform dependencies here
         }
