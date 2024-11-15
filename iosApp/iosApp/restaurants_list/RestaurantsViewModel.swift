@@ -35,7 +35,7 @@ import shared
     
     func setGetRestaurantsUseCase(getRestaurantsUseCase: GetRestaurantsUseCase) {
         self.getRestaurantsUseCase = getRestaurantsUseCase
-        loadRestaurants()
+        requestLocationPermission()
     }
     
     func loadRestaurants() {
@@ -49,5 +49,24 @@ import shared
             }
         }
     }
+    
+    func requestLocationPermission() {
+           DispatchQueue.main.async {
+               self.locationManager.requestWhenInUseAuthorization()
+           }
+       }
+       
+       func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+           switch status {
+           case .authorizedWhenInUse, .authorizedAlways:
+               isLocationPermissionGranted = true
+               loadRestaurants()
+           case .denied:
+               isLocationPermissionGranted = false
+               loadRestaurants()
+           default:
+               isLocationPermissionGranted = false
+           }
+       }
     
 }
