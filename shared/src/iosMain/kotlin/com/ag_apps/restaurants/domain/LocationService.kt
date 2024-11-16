@@ -43,6 +43,10 @@ actual class LocationService  {
 
 
     actual suspend fun getCurrentLocation(): Location? = suspendCoroutine { continuation ->
+
+        continuation.resume(Location(33.545672, -7.674557))
+        return@suspendCoroutine
+
         locationManager.requestWhenInUseAuthorization()
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.distanceFilter = kCLDistanceFilterNone
