@@ -1,4 +1,4 @@
-package com.ag_apps.restaurants.domain
+package com.ag_apps.restaurants.data.location
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -20,9 +20,6 @@ actual class LocationService(
 
     @SuppressLint("MissingPermission")
     actual suspend fun getCurrentLocation(): Location? = suspendCoroutine { continuation ->
-//        continuation.resume(Location(33.545672, -7.674557))
-//        return@suspendCoroutine
-
         fusedLocationClient.lastLocation.addOnSuccessListener { location ->
             location?.let {
                 continuation.resume(Location(it.latitude, it.longitude))
