@@ -14,8 +14,11 @@ class LocalRestaurantDataSource(
 
     override suspend fun getRestaurants(isLocationPermissionGranted: Boolean): List<Restaurant> {
 
-        val location = locationService.getCurrentLocation()
+        if (!isLocationPermissionGranted) {
+            return dummyRestaurants.map { it.toRestaurant() }
+        }
 
+        val location = locationService.getCurrentLocation()
         if (location != null) {
             return dummyRestaurants
                 .map { it.toRestaurant() }
@@ -34,9 +37,9 @@ class LocalRestaurantDataSource(
             name = "Restaurant 1",
             description = "This is a restaurant description 1",
             image = "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2a/93/bc/9b/le-grill-robuchon-restaurant.jpg?w=600&h=-1&s=1",
-            location = "1 Main St, Anytown USA",
-            latitude = 30.400312,
-            longitude = -9.548005
+            location = "Collège Ibn Anadim",
+            latitude = 33.546837,
+            longitude = -7.678310
         ),
         RestaurantDto(
             name = "Restaurant 2",
@@ -66,9 +69,9 @@ class LocalRestaurantDataSource(
             name = "Restaurant 5",
             description = "This is a restaurant description 5",
             image = "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2b/02/14/5e/restaurant-aglio-e-olio.jpg?w=600&h=-1&s=1",
-            location = "5 Main St, Anytown USA",
-            latitude =30.400965,
-            longitude = -9.546140
+            location = "Mosquée El Yosser, Oulfa, Casablanca",
+            latitude = 33.546282,
+            longitude = -7.673225
         ),
         RestaurantDto(
             name = "Restaurant 6",
@@ -106,9 +109,9 @@ class LocalRestaurantDataSource(
             name = "Restaurant 10",
             description = "This is a restaurant description 10",
             image = "https://www.valdoise-tourisme.com/wp-content/uploads/external/cambrousse-restaurant-13-e1681486278554-570x447.jpg",
-            location = "10 Main St, Anytown USA",
-            latitude = 30.400061,
-            longitude = -9.548539
+            location = "Bd Oued Edaoura, Casablanca",
+            latitude = 33.545535,
+            longitude = -7.679747
         ),
         RestaurantDto(
             name = "Restaurant 11",
@@ -145,10 +148,10 @@ class LocalRestaurantDataSource(
         RestaurantDto(
             name = "Restaurant 15",
             description = "This is a restaurant description 15",
-            image = "https://www.mohammadkhadim.com/wp-content/uploads/2023/06/17.jpg",
-            location = "15 Main St, Anytown USA",
-            latitude = 30.401215,
-            longitude = -9.547881
+            image = "https://d31tsesv4zrpsz.cloudfront.net/cache/img/le-casablanca-terrasse-jasmin-191253-1920-1280-crop.jpg?q=1695313769",
+            location = "FLORIDE, Casablanca",
+            latitude = 33.544320,
+            longitude = -7.674336
         )
     )
 
