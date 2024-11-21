@@ -1,5 +1,7 @@
 package com.ag_apps.restaurants.di
 
+import com.ag_apps.restaurants.data.location.LocationService
+import com.ag_apps.restaurants.data.restaurant.LocalRestaurantDataSource
 import com.ag_apps.restaurants.domain.RestaurantDataSource
 import com.ag_apps.restaurants.domain.usecase.GetRestaurantsUseCase
 

@@ -14,6 +14,10 @@ class LocalRestaurantDataSource(
 
     override suspend fun getRestaurants(isLocationPermissionGranted: Boolean): List<Restaurant> {
 
+        if (!isLocationPermissionGranted) {
+            return dummyRestaurants.map { it.toRestaurant() }
+        }
+
         val location = locationService.getCurrentLocation()
 
         if (location != null) {

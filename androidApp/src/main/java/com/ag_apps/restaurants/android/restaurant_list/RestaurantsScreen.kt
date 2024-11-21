@@ -48,15 +48,15 @@ fun RestaurantScreenCore(
     viewModel: RestaurantViewModel = koinViewModel()
 ) {
 
-    val recordAudioLauncher = rememberLauncherForActivityResult(
+    val permissionLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.RequestPermission(),
         onResult = { isGranted ->
             viewModel.onAction(RestaurantAction.LoadRestaurants(isGranted))
         }
     )
 
-    LaunchedEffect(recordAudioLauncher) {
-        recordAudioLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION)
+    LaunchedEffect(permissionLauncher) {
+        permissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION)
     }
 
     RestaurantScreen(

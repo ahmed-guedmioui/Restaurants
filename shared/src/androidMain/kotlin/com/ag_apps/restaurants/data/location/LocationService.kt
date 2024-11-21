@@ -20,14 +20,15 @@ actual class LocationService(
 
     @SuppressLint("MissingPermission")
     actual suspend fun getCurrentLocation(): Location? = suspendCoroutine { continuation ->
-        fusedLocationClient.lastLocation.addOnSuccessListener { location ->
-            location?.let {
-                continuation.resume(Location(it.latitude, it.longitude))
-            } ?: run {
+        fusedLocationClient.lastLocation
+            .addOnSuccessListener { location ->
+                location?.let {
+                    continuation.resume(Location(it.latitude, it.longitude))
+                } ?: run {
+                    continuation.resume(null)
+                }
+            }.addOnFailureListener { e ->
                 continuation.resume(null)
             }
-        }.addOnFailureListener { e ->
-            continuation.resume(null)
-        }
     }
 }
