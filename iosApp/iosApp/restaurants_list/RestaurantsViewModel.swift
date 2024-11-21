@@ -12,7 +12,7 @@ import shared
 
 
 @MainActor class RestaurantsViewModel: NSObject, ObservableObject, CLLocationManagerDelegate  {
-    
+
     private var getRestaurantsUseCase: GetRestaurantsUseCase? = nil
     
     private let locationManager = CLLocationManager()
@@ -27,13 +27,9 @@ import shared
         }
     }
     
-    init(getRestaurantsUseCase: GetRestaurantsUseCase? = nil) {
+    init(getRestaurantsUseCase: GetRestaurantsUseCase) {
         super.init()
-        self.getRestaurantsUseCase = getRestaurantsUseCase
         locationManager.delegate = self
-    }
-    
-    func setGetRestaurantsUseCase(getRestaurantsUseCase: GetRestaurantsUseCase) {
         self.getRestaurantsUseCase = getRestaurantsUseCase
         requestLocationPermission()
     }
@@ -54,19 +50,19 @@ import shared
            DispatchQueue.main.async {
                self.locationManager.requestWhenInUseAuthorization()
            }
-       }
+   }
        
-       func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-           switch status {
-           case .authorizedWhenInUse, .authorizedAlways:
-               isLocationPermissionGranted = true
-               loadRestaurants()
-           case .denied:
-               isLocationPermissionGranted = false
-               loadRestaurants()
-           default:
-               isLocationPermissionGranted = false
-           }
+   func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+       switch status {
+       case .authorizedWhenInUse, .authorizedAlways:
+           isLocationPermissionGranted = true
+           loadRestaurants()
+       case .denied:
+           isLocationPermissionGranted = false
+           loadRestaurants()
+       default:
+           isLocationPermissionGranted = false
        }
+   }
     
 }

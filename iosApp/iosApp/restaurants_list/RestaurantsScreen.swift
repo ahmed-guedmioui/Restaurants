@@ -11,12 +11,10 @@ import shared
 
 struct RestaurantsScreen: View {
     
-    private var getRestaurantsUseCase: GetRestaurantsUseCase
     @ObservedObject var viewModel: RestaurantsViewModel
     
-    init(getRestaurantsUseCase: GetRestaurantsUseCase) {
-        self.getRestaurantsUseCase = getRestaurantsUseCase
-        self.viewModel = RestaurantsViewModel(getRestaurantsUseCase: nil)
+    init() {
+        self.viewModel = RestaurantsViewModel(getRestaurantsUseCase: getRestaurantsUseCase)
     }
     
     var body: some View {
@@ -34,9 +32,6 @@ struct RestaurantsScreen: View {
             }
             .listStyle(.plain)
             .listRowSeparator(.hidden)
-            .onAppear {
-                viewModel.setGetRestaurantsUseCase(getRestaurantsUseCase: getRestaurantsUseCase)
-            }
         }
     }
 }
